@@ -1,4 +1,7 @@
-
+<<?php 
+require_once("include/sessions.php"); 
+require_once("include/functions.php"); 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +29,11 @@
                 
 			</div> <!-- end of side area of the panel-->
 			<div class="col-sm-10">
+			
 				<h1>Admin Panel</h1>
+				<!--calling sessions method to our main page-->
+			<div> <?php echo Message();
+			echo successMessage(); ?> </div>
 				<h4>About</h4>
 				<p><Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

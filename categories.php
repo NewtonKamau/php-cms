@@ -1,4 +1,9 @@
-<?php require_once("/include/DB.php");?>
+<?php 
+require_once("/include/DB.php");
+require_once("include/sessions.php");
+require_once("include/functions.php");
+
+?>
 <<?php 
 //calling a method for submit button and including the time from DateTime file 
 if (isset($post["submit"])) {
@@ -6,10 +11,27 @@ if (isset($post["submit"])) {
 $currentTime=time();
 $DateTime=strftime("%d-%B-%Y %h:%m", $currentTime);
 $DateTime;
+$Admin="Newton";
 if (empty($category)) {
-	echo "All Fields must be filled";
-	header(Location:dashboard.php);
-	exit;
+	$_SESSIONS["ErrorMessage"]="All fields must be field out";
+	redirectTo("categories.php");
+
+	
+}elseif(strlen($category)>99){
+	$_SESSIONS["ErrorMessage"]="The message is too long";
+	redirectTo("categories.php");
+
+}else{
+	global $ConnectingDB();
+	$QUERY="INSERT INTO category(datetime,name,creatorname) VALUES('$datetime','$category','$Admin')";
+	$Execute=mysqli_execute($QUERY);
+	if ($Execute) {
+		$_SESSIONS["successMessage"]="category has been saved";
+	redirectTo("categories.php");
+	}else{
+		$_SESSIONS["ErrorMessage"]="Category not added";
+	redirectTo("categories.php");
+	}
 }
 
  ?>
@@ -40,6 +62,8 @@ if (empty($category)) {
 			</div> <!-- end of side area of the panel-->
 			<div class="col-sm-10">
 				<h1>Manage Categories</h1>
+				<?php echo Message();
+				echo successMessage(); ?>
 				<div>
 					<form action="categories.php" method="post">
 						<fieldset>
