@@ -1,4 +1,19 @@
-<<!DOCTYPE html>
+<?php require_once("/include/DB.php");?>
+<<?php 
+//calling a method for submit button and including the time from DateTime file 
+if (isset($post["submit"])) {
+ 	$category=mysql_real_escape_string($_post["category"])
+$currentTime=time();
+$DateTime=strftime("%d-%B-%Y %h:%m", $currentTime);
+$DateTime;
+if (empty($category)) {
+	echo "All Fields must be filled";
+	header(Location:dashboard.php);
+	exit;
+}
+
+ ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Admin Dashboard</title>
@@ -24,49 +39,19 @@
                 
 			</div> <!-- end of side area of the panel-->
 			<div class="col-sm-10">
-				<h1>Admin Panel</h1>
-				<h4>About</h4>
-				<p><Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<h4>About</h4>
-				<p><Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<h4>About</h4>
-				<p><Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<h4>About</h4>
-				<p><Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<h4>About</h4>
-				<p><Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<h4>About</h4>
-				<p><Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<h1>Manage Categories</h1>
+				<div>
+					<form action="categories.php" method="post">
+						<fieldset>
+						<div class="form-group">
+							<label for="categoryname">Name:</label>
+							<input class="form-control" type="text" name="category" placeholder="Name">
+						</div>
+						<br>
+						<input class="btn btn-primary btn-block" type="submit" name="submit" value="Add New category">
+						</fieldset>
+					</form>
+				</div>
 			</div> <!-- end of main area of the panel-->
 		</div>
 	</div><!-- end of container-->
@@ -78,3 +63,4 @@
 
 </body>
 </html>
+ 
